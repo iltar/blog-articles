@@ -48,7 +48,7 @@ I'm mainly referring to the [EntityType](http://symfony.com/doc/current/referenc
 ### What do you mean with limiting the data structure and re-usability?
 When your entity is your data object, you're limited to the structure of your entity when mapping your type. This means that if you want to grab a part that's commonly shared between forms, you cannot simply re-use sub-types as this would alter the data structure required. Another solution would be to add "temporary" properties in your entity which are only used in the form. This would break the Single Responsibility Principle though.
 
-You can get pretty far with validation groups, but this requires you to configure your validation groups for every single form using this entity. When creating a new user, you want a unique validation on your username, but not when modifying and it stays the same for example.
+You can get pretty far with validation groups, but this requires you to configure your validation groups for every single form using this entity. When creating a new user, you want a unique validation on your username, but not when modifying as it will stay the same.
 
 How would you add a `newUsername` to your entity? Not.
 ```php
