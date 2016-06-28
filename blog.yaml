@@ -1,0 +1,21 @@
+author:
+    name:  Iltar van der Berg
+    email: kjarli@gmail.com
+    urls:
+        github:   https://github.com/iltar/
+        facebook: https://www.facebook.com/iltar.van.der.berg
+    tags:
+        - doctrine
+        - symfony
+        - php
+        - design patterns
+        - oop
+
+settings:
+    introduction: author.md
+    drafts:
+        dir:   /drafts/
+        index: drafts.yml
+    published:
+        dir:   /published/
+        index: published.yml
