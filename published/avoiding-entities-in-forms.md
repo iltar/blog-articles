@@ -1,3 +1,7 @@
+[//]: # (TITLE: Avoiding Entities in Forms)
+[//]: # (DATE: 2016-05-20T13:46:00+01:00)
+[//]: # (TAGS: php, doctrine, entity, form, data transfer object)
+
 Being active on IRC, almost every day I see questions coming by regarding forms and entities inside. This does not only give you a headache but it's also risky. You wouldn't want to flush an entity in an invalid state!
 
 ## But Using Entities in my Forms is Easy!

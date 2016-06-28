@@ -13,9 +13,5 @@ author:
 
 settings:
     introduction: author.md
-    drafts:
-        dir:   /drafts/
-        index: drafts.yml
-    published:
-        dir:   /published/
-        index: published.yml
+    drafts: /drafts/
+    published: /published/
