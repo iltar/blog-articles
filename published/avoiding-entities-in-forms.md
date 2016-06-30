@@ -43,7 +43,7 @@ Now the user wants to change his or her username and fills in "Foo", this will t
 If you were to remove the exception and allow the entity to be in an invalid state, any `flush()` (no args) will save this entity to your database in this state.
 
 ### What do you mean with additional guessing logic?
-I'm mainly referring to the [EntityType](http://symfony.com/doc/current/reference/forms/types/entity.html) in Symfony forms. This requires you to tightly couple your EntityRepository to your form. I won't go into depth on this one as I have never found a reason to use it before.
+I'm mainly referring to the [EntityType][entity-type] in Symfony forms. This requires you to tightly couple your EntityRepository to your form. I won't go into depth on this one as I have never found a reason to use it before.
 
 ### What do you mean with limiting the data structure and re-usability?
 When your entity is your data object, you're limited to the structure of your entity when mapping your type. This means that if you want to grab a part that's commonly shared between forms, you cannot simply re-use sub-types as this would alter the data structure required. Another solution would be to add "temporary" properties in your entity which are only used in the form. This would break the Single Responsibility Principle though.
@@ -58,7 +58,7 @@ $builder->add('username', RepeatedType::class, [/* options */]);
 ```
 
 ## So what would be the solution?
-[Data Transfer Objects - DTO](http://martinfowler.com/eaaCatalog/dataTransferObject.html). Simply put, a  Plain Old PHP Object - POPO to contain your data. It requires you to write an additional class for your form, but will be worth it on the long run. If you take the examples from before, you can easily solve that with the following snippets:
+[Data Transfer Objects - DTO][dto-martin-fowler]. Simply put, a  Plain Old PHP Object - POPO to contain your data. It requires you to write an additional class for your form, but will be worth it on the long run. If you take the examples from before, you can easily solve that with the following snippets:
 
 *Please note that this is not a working example*
 
@@ -102,3 +102,6 @@ public function changeUsernameAction(Request $request, Authentication $authentic
 ```
 
 Congratulations, you have now made your forms unaware of entities!
+
+[entity-type]:http://symfony.com/doc/current/reference/forms/types/entity.html
+[dto-martin-fowler]:http://martinfowler.com/eaaCatalog/dataTransferObject.html
