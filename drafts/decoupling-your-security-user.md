@@ -95,7 +95,6 @@ class SecurityUserFactory implements UserLoaderInterface
 
     public function loadUserByUsername($username)
     {
-
         if (null === ($user = $this->userRepository->findOneByUsernameOrId($username))) {
             throw new BadCredentialsException(sprintf('No user found for "%s"', $username));
         }
