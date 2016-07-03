@@ -1,5 +1,5 @@
 [//]: # (TITLE: Decoupling Your Security User)
-[//]: # (DATE: 2016-07-03T12:00:00+01:00)
+[//]: # (DATE: 2016-07-03T10:00:00+01:00)
 [//]: # (TAGS: symfony, security, php, data transfer object, session, serialize, entity)
 
 A lot of developers come to `#symfony` ask how to implement a login or authentication system. It's quite common to
