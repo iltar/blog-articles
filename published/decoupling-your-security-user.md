@@ -37,7 +37,7 @@ If you end up with Entities in your session, you will get synchronization issues
 your session entity won't be updated as it's not from the database. In order to solve this issue, you can merge the
 entity back into the entity manager each request.
 
-While this solves one of the problem, another common issue is the (un)serialization. Eventually your `User` Entity
+While this solves one of the problems, another common issue is the (un)serialization. Eventually your `User` Entity
 will get relations to other objects and this comes with several side-effects:
  - Relations will be serialized as well
  - If a relation is lazy loaded (standard setting), it will try to serialize the Proxy which contains a connection. This
