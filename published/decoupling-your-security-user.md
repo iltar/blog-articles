@@ -1,6 +1,6 @@
 [//]: # (TITLE: Decoupling Your Security User)
-[//]: # (DATE: 2016-07-06T09:00:00+01:00)
-[//]: # (TAGS: symfony, security, php, data transfer object)
+[//]: # (DATE: 2016-07-03T12:00:00+01:00)
+[//]: # (TAGS: symfony, security, php, data transfer object, session, serialize, entity)
 
 A lot of developers come to `#symfony` ask how to implement a login or authentication system. It's quite common to
 have a bunch of features which require authentication and authorization. While authentication is identifying your user,
@@ -15,7 +15,7 @@ which will prevent several issues within a Symfony application.
 ## Once Upon a Login...
 In Symfony the user object which represents the currently authenticated user, is stored within a token:
 `Symfony\Component\Security\Core\Authentication\Token\TokenInterface`. Internally this token is stored in the session as
-serialized object and accessible via the token storage service: `security.token_storage`. The most frequently used
+a serialized object and accessible via the token storage service: `security.token_storage`. The most frequently used
 implementation is [by fetching an entity from your database][entity user provider]:
 
 ```php
@@ -50,7 +50,7 @@ with incomplete objects because of missing properties. This case is triggered fo
 If you haven't already, check my previous blog post: [Avoiding Entities in Forms][avoiding-entities-in-forms]. This will
 give you an idea on solving this particular issue.
 
-## Back to Basic
+## Back to Basics
 The solution to this problem is rather simple actually. Those who know me can probably guess the solution already:
 Data Transfer Objects. This object's responsibility is to feed the security system with only the information required.
 The sole responsibility of this object is to implement the `UserInterface` and provide the security system with
@@ -114,10 +114,11 @@ This also means that if you request the security user from the token storage (ei
 no longer contain an entity. While some may argue this is a downside, I prefer it this way. The security user contains
 an identifier which is related to your User object in the database. If you happen to need this Entity often, you could
 create an [`ArgumentValueResolver`][argument value resolver]. This resolver would fetch the Entity based on the security
-user and present it in your action arguments. If you use an older version of Symfony, you can do this with parameter
-converters.
+user and present it in your action arguments. If you use an older version of Symfony, you can do this with a [Parameter
+Converter][parameter converter].
 
 [entity user provider]:http://symfony.com/doc/current/cookbook/security/entity_provider.html
 [avoiding-entities-in-forms]:http://stovepipe.systems/post/avoiding-entities-in-forms
 [loadUserByUsername]:http://symfony.com/doc/current/cookbook/security/entity_provider.html#using-a-custom-query-to-load-the-user
 [argument value resolver]:http://symfony.com/doc/current/cookbook/controller/argument_value_resolver.html
+[parameter converter]:http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
