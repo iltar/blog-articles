@@ -2,7 +2,7 @@
 [//]: # (DATE: 2016-07-03T10:00:00+01:00)
 [//]: # (TAGS: symfony, security, php, data transfer object, session, serialize, entity)
 
-A lot of developers come to `#symfony` ask how to implement a login or authentication system. It's quite common to
+A lot of developers come to `#symfony` and ask how to implement a login or authentication system. It's quite common to
 have a bunch of features which require authentication and authorization. While authentication is identifying your user,
 authorization is granting permissions to this user.
 
