@@ -113,7 +113,7 @@ So what you've done is the following:
 This also means that if you request the security user from the token storage (either directly or indirectly), it will
 no longer contain an entity. While some may argue this is a downside, I prefer it this way. The security user contains
 an identifier which is related to your User object in the database. If you happen to need this Entity often, you could
-create an [`ArgumentValueResolver`][argument value resolver]. This resolver would fetch the Entity based on the security
+create an [ArgumentValueResolver][argument value resolver]. This resolver would fetch the Entity based on the security
 user and present it in your action arguments. If you use an older version of Symfony, you can do this with a [Parameter
 Converter][parameter converter].
 
