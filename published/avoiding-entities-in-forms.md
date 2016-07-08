@@ -50,11 +50,11 @@ When your entity is your data object, you're limited to the structure of your en
 
 You can get pretty far with validation groups, but this requires you to configure your validation groups for every single form using this entity. When creating a new user, you want a unique validation on your username, but not when modifying as it will stay the same.
 
-How would you add a `newUsername` to your entity? Certainly not like this:
+How would you add a `newUsername` to your entity? As there is no `newUsername` property, you can't do it like this:
 ```php
 <?php
 // lacking the properties and re-usability
-$builder->add('username', RepeatedType::class, [/* options */]);
+$builder->add('newUsername', RepeatedType::class, [/* options */]);
 ```
 
 ## So what would be the solution?
