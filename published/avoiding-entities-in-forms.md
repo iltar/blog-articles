@@ -4,7 +4,7 @@
 
 Being active on IRC, almost every day I see questions coming by regarding forms and entities inside. This does not only give you a headache but it's also risky. You wouldn't want to flush an entity in an invalid state!
 
-But Using Entities in my Forms is Easy! Yes, it's certainly easy. You don't have to write any additional code to connect your validation rules and data mapping, not to mention that when it's valid, you only have to flush your entity and you're done. Using this method is especially easy when using CRUD and makes developing applications faster, thus RAD friendly.
+_"But Using Entities in my Forms is Easy!"_ Yes, it's certainly easy. You don't have to write any additional code to connect your validation rules and data mapping, not to mention that when it's valid, you only have to flush your entity and you're done. Using this method is especially easy when using CRUD and makes developing applications faster, thus RAD friendly.
 
 ## Then what is the issue?
 Where should I start? 
