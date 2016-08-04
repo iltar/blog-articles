@@ -28,4 +28,48 @@ scanner bleeps and he lets you pass. You are now authorized to enter the restric
 To put this into context, a login means you identify -or authenticate- yourself and seeing that "promote to Admin"
 button means you have the permissions -or authorization- to do so.
 
+## Symfony and Security
+
+In Symfony the `SecurityBundle` lets your configure the `SecurityComponent`. The configuration for this bundle looks
+rather big [and honestly, it is][2]. The most important parts you will work with are directly under the `security` key:
+firewall and access_control.
+
+### The Firewall
+
+> In computing, a firewall is a network security system that monitors and controls the incoming and outgoing network 
+  traffic based on predetermined security rules. A firewall typically establishes a barrier between a trusted, secure 
+  internal network and another outside network, such as the Internet, that is assumed not to be secure or trusted.
+>
+> _- [Quoted from Wikipedia][3]_
+
+In Symfony the firewall serves a similar purpose. A firewall is used to configure the methods of authentication. Various
+methods can be implemented, stateless API authentications with keys, OpenID, a simple login form, http-basic auth etc.
+While I won't go deeper into the actual methods of authentication, I think it's important to know how this works. While
+[the documentation explains fairly well how it works][4], I'd like to add a bit more info related to the authentication
+concept.
+
+```yml
+security:
+    # ... 
+    
+    firewall:
+        secured_area:
+            pattern: ^/
+            anonymous: ~
+```
+
+While this config is not complete, it are the two most important configuration parts.
+ - `pattern`: this defines which urls are covered by this firewall. If a request is matched on this pattern, this 
+  firewall will kick in and try to authenticated the user.
+ - `anonymous`: this allows an anonymous login. Long story short, it falls back to acknowledging that a user simply
+  cannot be identified. This is particularly useful if users can visit the pages only when identified but does not 
+  actually require a successful login.
+
+The firewall configuration is big but flexible. There are dozens of authentication methods and restrictions possible but
+has no direct relations with any forms of authorization whatsoever.
+
+
 [1]: http://symfony.com/doc/current/security.html#learn-more
+[2]: http://symfony.com/doc/current/reference/configuration/security.html
+[3]: https://en.wikipedia.org/wiki/Firewall_(computing)
+[4]: http://symfony.com/doc/current/security.html
