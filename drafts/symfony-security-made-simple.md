@@ -121,6 +121,9 @@ class FooController
 
 ```
 
+> The expression has access to the request attributes, this means that if you use a Parameter Converter, you can access
+  the objects converted.
+
 #### The AuthorizationChecker
 
 The third most used access control method is [the `AuthorizationChecker`][7]. In the previous example you can see the
