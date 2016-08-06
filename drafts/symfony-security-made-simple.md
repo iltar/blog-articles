@@ -82,7 +82,7 @@ authorization nor does the firewall have anything to do with authorization.
 
 Another important part of the security within symfony, is access control, this is the Authorization part. Symfony has
 multiple ways of regulating access to resources: The `access_control` option, `@Security` annotations on controllers and
-a more oftenly used variant: `AuthorizationCheckerInterface::isGranted()`.
+a more often used variant: `AuthorizationCheckerInterface::isGranted()`.
 
 #### The access_control Option
 
@@ -135,6 +135,12 @@ $authorizationChecker->isGranted('CAN_SEE_POST', $request->attributes->get('post
 
 The `AuthorizationChecker` is ideal to check permissions of something that would not influence your program flow, e.g.
 hiding a button or link in your template or fetching more records from your database if you have the right permissions.
+
+## What's Next?
+
+While I don't intend to explain every security related item in detail, I will write a blog post about Roles vs Voters.
+This will be one of the Authentication vs Authorization examples most often confused when designing access control in
+Symfony applications and websites.
 
 
 [1]: http://symfony.com/doc/current/security.html#learn-more
