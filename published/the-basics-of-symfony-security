@@ -1,4 +1,5 @@
-[//]: # (TITLE: Symfony Security Made Simple)
+[//]: # (TITLE: The Basics of Symfony Security)
+[//]: # (DATE: 2016-08-08T13:00:00+01:00)
 [//]: # (TAGS: php, security, configuration, authentication, authorization, firewall, access control)
 
 One of the more complex parts of Symfony is probably the Security and everything that comes with it. It's not only
