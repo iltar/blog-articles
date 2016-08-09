@@ -47,7 +47,7 @@ In Symfony the firewall serves a similar purpose. A firewall is used to configur
 methods can be implemented, stateless API authentications with keys, OpenID, a simple login form, http-basic auth etc.
 While I won't go deeper into the actual methods of authentication, I think it's important to know how this works. While
 [the documentation explains fairly well how it works][4], I'd like to add a bit more info related to the authentication
-concept. While this config is not complete, it are the two most important configuration parts.
+concept. While this config is not complete, it contains the two most important configuration parts.
 
 ```yml
 security:
