@@ -207,11 +207,15 @@ location to be updated.
 Some things are already in place, such as the ability to check if a user is logged in. Symfony comes with three
 different authentication levels which you can use for authorization checks in order:
  - `IS_AUTHENTICATED_ANONYMOUSLY`: Indicates that the minimal security level has to match the `anonymous: ~` option in
- as configured in the firewall. This is what I recommend to place on the root: `^/` in your access control.
+ as configured in the firewall. This is what I recommend to place on the root: `^/` in your access control. Enabling
+ this means that every request your user will be authenticated and has an AnonymousToken to use the basic security
+ features.
  - `IS_AUTHENTICATED_REMEMBERED`: Indicates that the `remember_me` option in the firewall should be triggered as minimal
- level of authentication.
+ level of authentication. This is a feature to remember the user without actually having to log in. Not recommended if
+ security for certain actions is mandatory.
  - `IS_AUTHENTICATED_FULLY`: Indicates that a full authentication has to take place in order to grant access. This is
- the option I recommend for pages you need to be logged-in if you don't use the remember me features.
+ the option I recommend for pages you need to be logged-in if you don't use the remember me features or if you want to
+ force the user to login manually to access the feature.
 
 Internally they are all voted on by the [AuthenticatedVoter][10].
 
