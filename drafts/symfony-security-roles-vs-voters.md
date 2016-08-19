@@ -66,7 +66,7 @@ public function editPostAction(Post $post)
     if ($post->getOwner()->getId() !== $token->getUsername()
         && !$AuthorizationChecker->isGranted('ROLE_MODERATOR')
         && !$AuthorizationChecker->isGranted('ROLE_ADMIN')
-    )) {
+    ) {
         throw new AccessDeniedHttpException();
     }
     // ...
@@ -175,6 +175,23 @@ public function editPostAction(Post $post)
 }
 ```
 
+If you prefer less code to achieve the same, you can change the way the access granted by utilizing the [`@Security` 
+annotation][9] from the SensioFrameworkExtraBundle. Before the controller is executed, it will executed the expression
+defined in the annotation to verify access.
+
+```php
+<?php
+// controller
+/**
+ * @Security("is_granted('CAN_EDIT_POST', post)")
+ */
+public function editPostAction(Post $post)
+{
+    // ...
+}
+```
+
+And last, the template to check if the button can be shown.
 ```twig
 {% if is_granted('CAN_EDIT_POST', post) %}
     <a href="{{ path('...') }}">Edit Post</a>
@@ -185,6 +202,19 @@ Now when ever you need to check if the user is allowed to post, you can simply a
 worry about the complicated logic behind it. It also makes it a lot easier to modify the logic as there's only one
 location to be updated.
 
+## Back to Basic Security
+
+Some things are already in place, such as the ability to check if a user is logged in. Symfony comes with three
+different authentication levels which you can use for authorization checks in order:
+ - `IS_AUTHENTICATED_ANONYMOUSLY`: Indicates that the minimal security level has to match the `anonymous: ~` option in
+ as configured in the firewall. This is what I recommend to place on the root: `^/` in your access control.
+ - `IS_AUTHENTICATED_REMEMBERED`: Indicates that the `remember_me` option in the firewall should be triggered as minimal
+ level of authentication.
+ - `IS_AUTHENTICATED_FULLY`: Indicates that a full authentication has to take place in order to grant access. This is
+ the option I recommend for pages you need to be logged-in if you don't use the remember me features.
+
+Internally they are all voted on by the [AuthenticatedVoter][10].
+
 [1]: ./the-basics-of-symfony-security
 [2]: http://symfony.com/doc/current/security.html#denying-access-roles-and-other-authorization
 [3]: https://github.com/symfony/symfony/blob/master/src/Symfony/Component/Security/Core/Authorization/Voter/RoleVoter.php
@@ -193,3 +223,5 @@ location to be updated.
 [6]: http://symfony.com/doc/current/security/voters.html
 [7]: http://symfony.com/doc/current/security/voters.html#the-voter-interface
 [8]: http://symfony.com/doc/current/security/voters.html#checking-for-roles-inside-a-voter
+[9]: https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html
+[10]: https://github.com/symfony/symfony/blob/master/src/Symfony/Component/Security/Core/Authorization/Voter/AuthenticatedVoter.php

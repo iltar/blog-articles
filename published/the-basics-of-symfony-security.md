@@ -107,6 +107,7 @@ While the access control is really nice to restrict access, you might want to ha
 controllers and actions. With [the security annotation][6] you can use the expression language to add extra checks.
 
 ```php
+<?php
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class FooController
