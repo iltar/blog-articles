@@ -136,7 +136,9 @@ class EditPostVoter extends Voter
     {
         // our previous business logic indicates that mods and admins can do it regardless
         foreach ($token->getRoles() as $role) {
-            if (in_array($role, ['ROLE_MODERATOR', 'ROLE_ADMIN'])) {
+            if (in_array($role, array_map(function (RoleInterface $r) {
+                return $r->getRole();
+            }, ['ROLE_MODERATOR', 'ROLE_ADMIN']))) {
                 return true;
             }
         }   
