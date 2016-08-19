@@ -150,7 +150,7 @@ class EditPostVoter extends Voter
 
 The next thing to do, is create a service definition so the security picks it up. It's as simple as adding a tag.
 
-```yml
+```yaml
 # app/config/services.yml
 services:
     app.security.voter.edit_post:
@@ -175,7 +175,7 @@ public function editPostAction(Post $post)
 }
 ```
 
-```yml
+```twig
 {% if is_granted('CAN_EDIT_POST', post) %}
     <a href="{{ path('...') }}">Edit Post</a>
 {% endif %}
