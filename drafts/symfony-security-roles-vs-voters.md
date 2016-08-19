@@ -40,7 +40,7 @@ Voters are triggered for every authorization part:
  
 All of the above authorization methods use an attribute (or multiple) and a subject to vote on.
 
-### So Why Should I Use Voters Instead of Roles?
+## So Why Should I Use Voters Instead of Roles?
 
 As I've explained, roles are merely an extension to authentication, they serve as extra descriptions to your identity.
 calling something like `$authorizationChecker->isGranted('ROLE_ADMIN')` doesn't really make sense, what are you actually
@@ -106,7 +106,7 @@ public function editPostAction(Post $post)
 All set, `git push` and be done with it. Except that you product owner wants this link shown in the topic overview as
 well as in the post itself. Well, that's going to be a big copy paste... So how can you improve this?
 
-### Creating a Voter
+## Creating a Voter
 
 The solution is rather simple, create a voter. The easiest way to create a voter is by [extending the `Voter`][7] that
 Symfony provides already. There's a view things we need to decide before making the class:
@@ -180,6 +180,10 @@ public function editPostAction(Post $post)
     <a href="{{ path('...') }}">Edit Post</a>
 {% endif %}
 ```
+
+Now when ever you need to check if the user is allowed to post, you can simply add the above checks without having to
+worry about the complicated logic behind it. It also makes it a lot easier to modify the logic as there's only one
+location to be updated.
 
 [1]: ./the-basics-of-symfony-security
 [2]: http://symfony.com/doc/current/security.html#denying-access-roles-and-other-authorization
