@@ -2,7 +2,7 @@
 [//]: # (DATE: 2016-08-20T09:00:00+01:00)
 [//]: # (TAGS: php, security, roles, voters, authentication, authorization, firewall, access control)
 
-In my [previous blog bost][1] I've explained the basics of authentication, authorization and how this is dealt with in
+In my [previous blog post][1] I've explained the basics of authentication, authorization and how this is dealt with in
 Symfony. Due to the size of the post, I've left out several important topics such as roles and voters; Both an equally
 important part of authentication and authorization. A common misconception is that roles should be used to check 
 permissions. In fact, they should definitely not be used to check permissions! 
