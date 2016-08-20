@@ -7,6 +7,8 @@ Symfony. Due to the size of the post, I've left out several important topics suc
 important part of authentication and authorization. A common misconception is that roles should be used to check 
 permissions. In fact, they should definitely not be used to check permissions! 
 
+[1]: ./the-basics-of-symfony-security
+
 ## Roles and Authentication
 
 Roles are primarily for authentication as they extend on the part of identification. A role describes something about a
@@ -221,7 +223,6 @@ different authentication levels which you can use for authorization checks in or
 
 Internally they are all voted on by the [AuthenticatedVoter][10].
 
-[1]: ./the-basics-of-symfony-security
 [2]: http://symfony.com/doc/current/security.html#denying-access-roles-and-other-authorization
 [3]: https://github.com/symfony/symfony/blob/master/src/Symfony/Component/Security/Core/Authorization/Voter/RoleVoter.php
 [4]: https://github.com/symfony/symfony/blob/master/src/Symfony/Component/Security/Core/Authorization/Voter/RoleHierarchyVoter.php
