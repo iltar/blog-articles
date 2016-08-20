@@ -142,7 +142,7 @@ hiding a button or link in your template or fetching more records from your data
 
 While I don't intend to explain every security related item in detail, I will write a blog post about Roles vs Voters.
 This will be one of the Authentication vs Authorization examples most often confused when designing access control in
-Symfony applications and websites.
+Symfony applications and websites. UPDATE: [Symfony Security Roles vs. Voters][8].
 
 
 [1]: http://symfony.com/doc/current/security.html#learn-more
@@ -152,3 +152,4 @@ Symfony applications and websites.
 [5]: http://symfony.com/doc/current/security.html#securing-url-patterns-access-control
 [6]: http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html
 [7]: http://symfony.com/doc/current/components/security/authorization.html#authorization-checker
+[8]: /post/symfony-security-roles-vs-voters
