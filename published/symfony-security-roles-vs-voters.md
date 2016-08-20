@@ -7,7 +7,7 @@ Symfony. Due to the size of the post, I've left out several important topics suc
 important part of authentication and authorization. A common misconception is that roles should be used to check 
 permissions. In fact, they should definitely not be used to check permissions! 
 
-[1]: ./the-basics-of-symfony-security
+[1]: /post/the-basics-of-symfony-security
 
 ## Roles and Authentication
 
