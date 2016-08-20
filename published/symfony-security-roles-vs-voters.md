@@ -19,14 +19,14 @@ can have it virtually assign the `ROLE_USER` automatically.
 While the role hierarchy looks interesting, it has nothing to do with authentication. In fact, this is the authorization
 dealing with this virtual inheritance. The only way to trigger this, is by checking if you're allowed to do something;
 Authorization. The example is pointing at `access_control` verifying if you have the required role for a specific route.
-While this may seem nice, this is not how you should be used `access_control`.
+While this may seem nice, this is not how you should be using checking permissions directly.
 
 ## Voters and Authorization
 
 So what should you be using then? Voters. Voters are classes that simply vote on an attribute and optionally a subject.
-An attribute is usually an uppercase string that defines an action. A subject is the subject being voted on if required.
-Did you know that the only reason you can vote on (dynamic) roles, is because of the [RoleVoter][3] and 
-[RoleHierarchyVoter][4]? They simply check if the token contains the roles specified. 
+An attribute is usually an uppercase string that defines an action and a subject is being voted on if required. Did you 
+know that the only reason you can vote on (dynamic) roles, is because of the [RoleVoter][3] and [RoleHierarchyVoter][4]?
+They simply check if the token contains the roles specified. 
 
 The [symfony documentation explains Authorization][5] if you want to dive a bit deeper into its inner workings. 
 [Voters][6] basically come down to the following:
@@ -73,8 +73,8 @@ public function editPostAction(Post $post)
 }
 ```
 
-As you can see, this is quite some logic just to check if the current user can see it. Now we want to add another
-condition; The post may not be locked. Lets do update the template!
+As you can see, this is quite some logic just to check if the current user can see it. Now you want to add another
+condition; The post may not be locked. Lets update the template!
 
 ```twig
 {% if (post.owner.id is app.user.username and not post.locked)
@@ -84,7 +84,7 @@ condition; The post may not be locked. Lets do update the template!
     <a href="{{ path('...') }}">Edit Post</a>
 {% endif %}
 ```
-Done, right? Oh, we still need to update the controller as well.
+Done, right? Oh, you still need to update the controller as well.
 
 ```php
 <?php
@@ -109,12 +109,12 @@ well as in the post itself. Well, that's going to be a big copy paste... So how 
 ## Creating a Voter
 
 The solution is rather simple, create a voter. The easiest way to create a voter is by [extending the `Voter`][7] that
-Symfony provides already. There's a view things we need to decide before making the class:
+Symfony already provides. There's a few things you need to decide before making the class:
  - What will it vote on, or the attribute, what should it be called?
- - Do we have a subject or not?
+ - Do you have a subject or not?
  - What would give it access?
 
-First off we start by making a class:
+First off you start by making a class:
 
 ```php
 <?php
@@ -128,7 +128,7 @@ class EditPostVoter extends Voter
 {    
     protected function supports($attribute, $subject)
     {
-        // we only want to vote if the attribute and subject are what we expect
+        // you only want to vote if the attribute and subject are what you expect
         return $attribute === 'CAN_EDIT_POST' && $subject instanceof Post;
     }
     
@@ -190,6 +190,8 @@ public function editPostAction(Post $post)
     // ...
 }
 ```
+> One cool thing about the `@Security` is that all arguments in the action are available in your expression as long
+  as they come in via the request attributes, E.g as the parameter converter does.
 
 And last, the template to check if the button can be shown.
 ```twig
