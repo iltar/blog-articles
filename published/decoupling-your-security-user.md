@@ -8,7 +8,7 @@ authorization is granting permissions to this user.
 
 One of the steps of implementing the security features of your application, involves creating an object to contain
 your user information such as your username, email, password and user id. If you have followed the Symfony docs,
-you will most like have ended up with a `User` entity implementing the
+you will most likely have ended up with a `User` entity implementing the
 `Symfony\Component\Security\Core\User\UserInterface`. I would like to show you an alternative- decoupled- approach
 which will prevent several issues within a Symfony application.
 
