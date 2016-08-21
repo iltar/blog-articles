@@ -16,7 +16,7 @@ which will prevent several issues within a Symfony application.
 In Symfony the user object which represents the currently authenticated user, is stored within a token:
 `Symfony\Component\Security\Core\Authentication\Token\TokenInterface`. Internally this token is stored in the session as
 a serialized object and accessible via the token storage service: `security.token_storage`. The most frequently used
-implementation is [by fetching an entity from your database][entity user provider]:
+implementation is [by fetching an entity from your database][1]:
 
 ```php
 /** @ORM\Table() @ORM\Entity() */
@@ -47,7 +47,7 @@ Oh and don't even think about changing your Entity such as adding fields, this w
 with incomplete objects because of missing properties. This case is triggered for every authenticated user.
 
 ### Entities in Forms
-If you haven't already, check my previous blog post: [Avoiding Entities in Forms][avoiding-entities-in-forms]. This will
+If you haven't already, check my previous blog post: [Avoiding Entities in Forms][2]. This will
 give you an idea on solving this particular issue.
 
 ## Back to Basics
@@ -76,7 +76,7 @@ class SecurityUser implements UserInterface, \Serializable
 ```
 
 ### A Layer of Abstraction
-[According to the documentation][loadUserByUsername], you have to implement an interface which will return an object
+[According to the documentation][3], you have to implement an interface which will return an object
 implementing the `UserInterface`: the `Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface`. In the example this
 is done by adding it to your `UserRepository`, which is a doctrine `EntityRepository`.
 
@@ -113,12 +113,12 @@ So what you've done is the following:
 This also means that if you request the security user from the token storage (either directly or indirectly), it will
 no longer contain an entity. While some may argue this is a downside, I prefer it this way. The security user contains
 an identifier which is related to your User object in the database. If you happen to need this Entity often, you could
-create an [ArgumentValueResolver][argument value resolver]. This resolver would fetch the Entity based on the security
+create an [ArgumentValueResolver][4]. This resolver would fetch the Entity based on the security
 user and present it in your action arguments. If you use an older version of Symfony, you can do this with a [Parameter
-Converter][parameter converter].
+Converter][5].
 
-[entity user provider]:http://symfony.com/doc/current/cookbook/security/entity_provider.html
-[avoiding-entities-in-forms]:http://stovepipe.systems/post/avoiding-entities-in-forms
-[loadUserByUsername]:http://symfony.com/doc/current/cookbook/security/entity_provider.html#using-a-custom-query-to-load-the-user
-[argument value resolver]:http://symfony.com/doc/current/cookbook/controller/argument_value_resolver.html
-[parameter converter]:http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
+[1]: http://symfony.com/doc/current/cookbook/security/entity_provider.html
+[2]: /post/avoiding-entities-in-forms
+[3]: http://symfony.com/doc/current/cookbook/security/entity_provider.html#using-a-custom-query-to-load-the-user
+[4]: http://symfony.com/doc/current/controller/argument_value_resolver.html
+[5]: http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
