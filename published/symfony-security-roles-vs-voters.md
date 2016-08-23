@@ -1,4 +1,4 @@
-[//]: # (TITLE: Symfony Security Roles vs. Voters)
+[//]: # (TITLE: Symfony Security, Roles vs. Voters)
 [//]: # (DATE: 2016-08-20T09:00:00+01:00)
 [//]: # (TAGS: php, security, roles, voters, authentication, authorization, firewall, access control)
 
