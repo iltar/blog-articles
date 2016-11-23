@@ -13,8 +13,7 @@ With the release of Symfony 2.0, it was often presumed useful to split code logi
 in bundles. One could for example build a UserBundle, InvoicingBundle, ContractBundle, LoginBundle and so on. This
 however, creates a spaghetti of dependencies and this was not necessarily in the code.
 
-When using this bundle setup, templates were usually located in `src/SomeBundle/Resources/views/` or a similar
-structure. As Twig is the main templating engine used in Symfony, it's quite common to use template inheritance. This
+Twig is the main templating engine used in Symfony. So when using this bundle setup, templates were usually located in `src/SomeBundle/Resources/views/` or a similar structure. Moreover, it's quite common to use template inheritance. This
 means that instead of including blocks of templates everywhere, you extend a base template. The question is, where do
 you put this base template? Often in a website, you have similar layouts for all page, this means they share a common
 parent, often called `layout.html.twig`. Either you put this in your application directly: `app/Resources/views` or
@@ -24,8 +23,8 @@ This already creates a tight coupling between the bundles (and application), but
 definitions and routes; for example my Invoice links to a Contract, this means that my InvoicingBundle has a hard dependency
 on the ContractBundle as the routes are now known.
 
-## The AppBundle
-Introducing the AppBundleTo solved this dependency problem. This meant that instead of splitting bundles
+### The AppBundle
+Introducing the AppBundle to solve this dependency problem. This meant that instead of splitting bundles
 by domain, the AppBundle contains this split and recommends Resources to be added to `app/Resources/` instead
 of having them in the bundle. This solved the problem of having too many bundles in your application, but what about
 vendor bundles?
