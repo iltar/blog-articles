@@ -26,10 +26,10 @@ definitions and routes; for example my Invoice links to a Contract, this means t
 dependency on the ContractBundle as the routes are now known.
 
 ### The AppBundle
-Introducing the AppBundle solved the dependency problem. This means that instead of splitting bundles by domain, the
-AppBundle contains the categorisation of domain and recommends resources to be added to `app/Resources/` instead of
-having them in the bundle. This solved the problem of having too many bundles in your application, but what about vendor
-bundles?
+Introducing [the AppBundle][app bundle] solved the dependency problem. This means that instead of splitting bundles by 
+domain, the AppBundle contains the categorisation by domain and recommends resources to be added to `app/Resources/`
+instead of having them in the bundle. This solved the problem of having too many bundles in your application, but what
+about vendor bundles?
 
 ### But What is a Bundle Exactly?
 When looking back to what they are used for, we can determine that it seems to be pretty much an application. It has our
@@ -89,6 +89,7 @@ In theory you don't need an AppBundle:
  - You can register services directly in config.yml or even load a complete directory of service files
  - Your entities are better off outside of the bundle as they don't require a bundle to function
 
+[app bundle]: http://symfony.com/doc/current/best_practices/creating-the-project.html#application-bundles
 [config docs]: https://symfony.com/doc/3.1/components/config/definition.html
 [extension docs]: https://symfony.com/doc/3.1/bundles/extension.html
 [best practices]: http://symfony.com/doc/current/best_practices/index.html
