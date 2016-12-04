@@ -1,5 +1,5 @@
 [//]: # (TITLE: What are Bundles in Symfony?)
-[//]: # (DATE: 2016-11-24T11:00:00+01:00)
+[//]: # (DATE: 2016-12-05T09:00:00+01:00)
 [//]: # (TAGS: Symfony, Bundle, Module, Extension, DIC, Dependency Injection Container)
 
 People often refer to bundles as modules or re-usable code for Symfony applications. When a developer has experience
