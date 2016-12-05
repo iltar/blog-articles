@@ -77,7 +77,7 @@ about infrastructural bundles.
   schema.
 
 At the moment a bundle in your application is more of a convenience. It provides a few easy tricks to reduce
-the amount of knowledge to get a project starts:
+the amount of knowledge to get a project started:
  - Entity registration
  - Command registration
  - What ever other bundles automatically register
