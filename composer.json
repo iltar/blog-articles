@@ -1,0 +1,24 @@
+{
+    "name": "iltar/blog-articles",
+    "license": "MIT",
+    "description": "Blog articles and examples thereof",
+    "type": "examples",
+    "autoload": {
+        "psr-4": {
+            "Iltar\\BlogArticles\\": "/src"
+        }
+    },
+    "require": {
+        "symfony/form": "^3.2",
+        "symfony/validator": "^3.2",
+        "symfony/http-foundation": "^3.2",
+        "symfony/templating": "^3.2",
+        "doctrine/orm": "^2.5"
+    },
+    "authors": [
+        {
+            "name": "Iltar van der Berg",
+            "email": "kjarli@gmail.com"
+        }
+    ]
+}
