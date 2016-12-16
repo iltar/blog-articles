@@ -13,8 +13,8 @@ principle. Small form types are easier to re-use and make it less complex to bui
 data objects to have specific goals with validation for their specific case, rather than complex validation groups.
 
 ## The User Story
-Story: "_As a writer of blog posts, I want people to be able to post comments on my blog post so I can gather feedback
-and answer questions._"
+Story: _As a writer of blog posts, I want people to be able to post comments on my blog post so I can gather feedback
+and answer questions._
 
 Does not sound too hard, right?
 
@@ -91,8 +91,8 @@ requirements rather than the setup of the database. All you need to do now is wi
 You finished the User Story and you successfully deployed your code to production. However, the business changes over
 time and someone created a new User Story.
 
-Story: "_As a writer of blog posts, I want a checkbox on another page to confirm the post, so that users explicitly have
-to agree with our terms._"
+Story: _As a writer of blog posts, I want a checkbox on another page to confirm the post, so that users explicitly have
+to agree with our terms._
 
 A confirmation field still requires something to hold the data to say yes or
 no. Luckily you have seen how to not use entities but DTOs for your form, thus adding one should be a piece of cake!
