@@ -48,7 +48,8 @@ Now you can actually put this into context, as you have the details of what you 
     {
         $resolver->setDefault('data_class', CommentData::class);
     }
-
+```
+```php
     // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/CommentData.php
     /** @Assert\Email() */
     private $email;
@@ -115,7 +116,8 @@ data object that wrap around the `CommentData` and `CommentType`.
     {
         $resolver->setDefault('data_class', ConfirmReplyData::class);
     }
-    
+```
+```php
     // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyData.php 
     /** @Assert\IsTrue() */
     private $confirm;
