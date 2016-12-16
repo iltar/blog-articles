@@ -33,11 +33,11 @@ post a comment? I would say that in this case the bare minimum is good enough, a
 actual comment; the Minimal Viable Product. What should the page contain? Probably the post itself and the existing
 replies. Underneath that you can place a pair of input fields for the comment.
 
-### Finally, a Form!
+## Finally, a Form!
 Now you can actually put this into context, as you have the details of what you need.
 
 ```php
-// CommentFormType.php
+    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/CommentFormType.php
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('email', EmailType::class);
@@ -49,7 +49,7 @@ Now you can actually put this into context, as you have the details of what you 
         $resolver->setDefault('data_class', CommentData::class);
     }
 
-// CommentData.php
+    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/CommentData.php
     /** @Assert\Email() */
     private $email;
 
@@ -57,6 +57,39 @@ Now you can actually put this into context, as you have the details of what you 
     private $comment;
 ```
 
+This form is not too complex and is relatively easy to handle. Moreover, it's not bound to your entity and defines the
+requirements rather than the setup of the database. All you need to do now is wire it to your controller.
+
+```php
+    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/SimpleReplyController.php
+    public function viewPostAction(Request $request, Post $post)
+    {
+        $data = new CommentData();
+        $form = $this->formFactory->create(CommentFormType::class, $data);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment = new Comment($post, $data->getEmail(), $data->getComment());
+
+            $this->entityManager->persist($comment);
+            $this->entityManager->flush();
+
+            return new RedirectResponse($request->getUri());
+        }
+
+        return $this->templating->render('comment.template', [
+            'form' => $form->createView(),
+            'post' => $post,
+        ]);
+    }
+```
+
+## The Business Changed...
+As a writer of blog posts, I want a default reply hinting people that they can post, so that 
+
+Your User Story is finished and was deployed successfully. However, the business changes over time and a new User Story
+is created.
 
 [entities in forms]: /post/avoiding-entities-in-forms
 [composition over inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
