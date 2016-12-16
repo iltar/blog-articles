@@ -36,7 +36,7 @@ class SimpleReplyController
             return new RedirectResponse($request->getUri());
         }
 
-        return $this->templating->render('comment.template', [
+        return $this->templating->render('/simple_reply/view_post.html.twig', [
             'form' => $form->createView(),
             'post' => $post,
         ]);

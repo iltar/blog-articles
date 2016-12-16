@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Templating\EngineInterface;
 
-class ReplyController
+class ConfirmReplyController
 {
     private $formFactory;
     private $templating;
@@ -22,13 +22,13 @@ class ReplyController
 
     public function viewPostAction(Request $request, Post $post)
     {
-        $data = new CommentData();
-        $form = $this->formFactory->create(CommentFormType::class, $data);
+        $data = new ConfirmReplyData();
+        $form = $this->formFactory->create(ConfirmReplyFormType::class, $data);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment = new Comment($post, $data->getEmail(), $data->getComment());
+            $comment = $data->getComment();
 
             $this->entityManager->persist($comment);
             $this->entityManager->flush();
@@ -36,7 +36,7 @@ class ReplyController
             return new RedirectResponse($request->getUri());
         }
 
-        return $this->templating->render('comment.template', [
+        return $this->templating->render('/confirm_reply/view_post.html.twig', [
             'form' => $form->createView(),
             'post' => $post,
         ]);

@@ -13,7 +13,7 @@ principle. Small form types are easier to re-use and make it less complex to bui
 data objects to have specific goals with validation for their specific case, rather than complex validation groups.
 
 ## The User Story
-As a writer of blog posts, I want people to post comments on my blog post to gather feedback and answer questions.
+_As a writer of blog posts, I want people to post comments on my blog post to gather feedback and answer questions._
 
 Does not sound to hard, right?
 
@@ -86,10 +86,80 @@ requirements rather than the setup of the database. All you need to do now is wi
 ```
 
 ## The Business Changed...
-As a writer of blog posts, I want a default reply hinting people that they can post, so that 
+_As a writer of blog posts, I want a checkbox on another page to confirm the post, so that users explicitly have to agree
+with our terms._
 
 Your User Story is finished and was deployed successfully. However, the business changes over time and a new User Story
-is created.
+is created. A confirmation field still requires something to hold the data to say yes or no. Luckily you have seen how
+to not use entities but DTOs for your form, thus adding one should be a piece of cake!
+
+## Adding a Confirm Checkbox
+As mentioned before, I encourage composition over inheritance. To accomplish this, you can create a new form type and
+data object that wrap around the `CommentData` and `CommentType`.
+
+```php
+
+    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyFormType.php
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('confirm', ChoiceType::class, [
+            'expanded' => true,
+            'multiple' => true,
+        ]);
+
+        $builder->add('comment', CommentFormType::class);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefault('data_class', ConfirmReplyData::class);
+    }
+    
+    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyData.php 
+    /** @Assert\IsTrue() */
+    private $confirm;
+
+    /** @Assert\Valid() */
+    private $comment;
+```
+
+To keep both controllers functional, a new controller can be added. This controller contains some slight modifications
+but does exactly the same when it comes to handling the form. It transfers data from the DTO into an Entity and flushes
+it.
+
+```php
+    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyController.php 
+    public function viewPostAction(Request $request, Post $post)
+    {
+        $data = new ConfirmReplyData();
+        $form = $this->formFactory->create(ConfirmReplyFormType::class, $data);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment = $data->getComment();
+
+            $this->entityManager->persist($comment);
+            $this->entityManager->flush();
+
+            return new RedirectResponse($request->getUri());
+        }
+
+        return $this->templating->render('/confirm_reply/view_post.html.twig', [
+            'form' => $form->createView(),
+            'post' => $post,
+        ]);
+    }
+```
+
+To sum this up:
+ - It's a good idea to follow [Composition over Inheritance][composition over inheritance] for forms.
+ - It's actually quite easy to use Data Transfer Objects.
+ - Decoupling your entity from forms is easier if you rethink from the ground up what your form should do and how to
+ model this.
+ 
+If you wish to view the full classes, you can check them out in my blog-articles repository, where the articles posted
+on this blog are stored: https://github.com/iltar/blog-articles/tree/master/src/RethinkingFormDevelopment
 
 [entities in forms]: /post/avoiding-entities-in-forms
 [composition over inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
