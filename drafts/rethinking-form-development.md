@@ -4,7 +4,7 @@
 
 In one of my previous blog posts, [Avoiding Entities in Forms][entities in forms], I've shown how to decouple your forms
 from your entities. Afterwards I got much feedback and most of it was about the lack of examples and the flow, when
-to fill your data and how to get this back in the entity. Often I notice however, is that developers design forms
+to fill your data and how to get this back in the entity. Often I notice however, that developers design forms
 based on their entities. This leads to complex forms because you're confined to a strict set of properties. Developers
 often get struck with unmapped fields and form events to work their way around those limitations.
 
@@ -24,7 +24,7 @@ a record in your database. Those records are commonly mapped by Entities. Let's 
 
 It makes sense to write a form for this Entity, let the form component do its magic and flush the entity. However, as
 written in my other post, you should probably decouple this. So you check your entity and start extracting the fields
-you need and come to the conclusion that it ahs a slight overhead. Why extract a data object that's identical to the
+you need and come to the conclusion that it has a slight overhead. Why extract a data object that's identical to the
 entity?
 
 ## Don't Think Like a Developer
