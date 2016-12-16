@@ -5,8 +5,8 @@
 In one of my previous blog posts, [Avoiding Entities in Forms][entities in forms], I've shown how to decouple your forms
 from your entities. Afterwards I got much feedback and most of it was about the lack of examples and the flow, when
 to fill your data and how to get this back in the entity. Often I notice however, that developers design forms
-based on their entities. This leads to complex forms because you're confined to a strict set of properties. Developers
-often get struck with unmapped fields and form events to work their way around those limitations.
+based on their entities. This can lead to complex forms because you're confined to a strict set of properties.
+Developers often get struck with unmapped fields and form events to work their way around those limitations.
 
 With Symfony Forms I highly encourage to follow the [composition over inheritance][composition over inheritance]
 principle. Small form types are easier to re-use and make it less complex to build forms. Moreover, this allows small
