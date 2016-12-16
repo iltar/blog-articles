@@ -3,10 +3,10 @@
 [//]: # (TAGS: Symfony, Forms, DTO, Data Transfer Object, Entity, User Story, Minimal Viable Product)
 
 In one of my previous blog posts, [Avoiding Entities in Forms][entities in forms], I've shown how to decouple your forms
-from your entities. Afterwards I got a lot of feedback and most of it was about the lack of examples and the flow, when
-to fill your data and how to get this back in the entity. One thing I notice however, is that developers design forms
+from your entities. Afterwards I got much feedback and most of it was about the lack of examples and the flow, when
+to fill your data and how to get this back in the entity. Often I notice however, is that developers design forms
 based on their entities. This leads to complex forms because you're confined to a strict set of properties. Developers
-often enough get struck with unmapped fields and form events to work their way around those limitations.
+often get struck with unmapped fields and form events to work their way around those limitations.
 
 With Symfony Forms I highly encourage to follow the [composition over inheritance][composition over inheritance]
 principle. Small form types are easier to re-use and make it less complex to build forms. Moreover, this allows small
@@ -18,18 +18,18 @@ _As a writer of blog posts, I want people to post comments on my blog post to ga
 Does not sound to hard, right?
 
 ## Starting From Scratch
-As developer, you know what your form is supposed to do; you have data from a request and you want to create or update
+As a developer, you know what your form should do; you have data from a request and you want to create or update
 a record in your database. Those records are commonly mapped by Entities. Let's say you could have a very simple
 `BlogComment` entity, which has a `BlogPost` relation, a title, body and email address of the poster.
 
-It makes sense to write a form for this Entity, let the form component do its magic and flush the entity. But as I've
-mentioned in my other post, you should probably decouple this. So you check your entity and start extracting the fields
-you need and come to the conclusion that it's a bit of overhead. Why extract a data object that's exactly the same as
-the entity?
+It makes sense to write a form for this Entity, let the form component do its magic and flush the entity. However, as
+written in my other post, you should probably decouple this. So you check your entity and start extracting the fields
+you need and come to the conclusion that it ahs a slight overhead. Why extract a data object that's identical to the
+entity?
 
 ## Don't Think Like a Developer
 Remember the User Story? It did not mention any technical details, only the goal. What do people need to enter when they
-post a comment? I would say that in this case the bare minimum is good enough, an email address for verification and the
+post a comment? I would say that in this case the bare minimum is sufficient, an email address for verification and the
 actual comment; the Minimal Viable Product. What should the page contain? Probably the post itself and the existing
 replies. Underneath that you can place a pair of input fields for the comment.
 
@@ -89,16 +89,15 @@ requirements rather than the setup of the database. All you need to do now is wi
 _As a writer of blog posts, I want a checkbox on another page to confirm the post, so that users explicitly have to agree
 with our terms._
 
-Your User Story is finished and was deployed successfully. However, the business changes over time and a new User Story
-is created. A confirmation field still requires something to hold the data to say yes or no. Luckily you have seen how
-to not use entities but DTOs for your form, thus adding one should be a piece of cake!
+You finished the User Story and you successfully deployed your code to production. However, the business changes over
+time and someone created a new User Story. A confirmation field still requires something to hold the data to say yes or
+no. Luckily you have seen how to not use entities but DTOs for your form, thus adding one should be a piece of cake!
 
 ## Adding a Confirm Checkbox
 As mentioned before, I encourage composition over inheritance. To accomplish this, you can create a new form type and
 data object that wrap around the `CommentData` and `CommentType`.
 
 ```php
-
     // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyFormType.php
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -123,9 +122,8 @@ data object that wrap around the `CommentData` and `CommentType`.
     private $comment;
 ```
 
-To keep both controllers functional, a new controller can be added. This controller contains some slight modifications
-but does exactly the same when it comes to handling the form. It transfers data from the DTO into an Entity and flushes
-it.
+To keep both controllers functional, a new controller can be added. However, this controller contains only some slight
+modifications but essentially works the same; it transfers data from the DTO into an Entity and flushes it.
 
 ```php
     // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyController.php 
