@@ -3,8 +3,8 @@
 [//]: # (TAGS: Symfony, Forms, DTO, Data Transfer Object, Entity, User Story, Minimal Viable Product)
 
 In one of my previous blog posts, [Avoiding Entities in Forms][entities in forms], I've shown how to decouple your forms
-from your entities. Afterwards I got much feedback and most of it was about the lack of examples and the flow, when
-to fill your data and how to get this back in the entity. Often I notice however, that developers design forms
+from your entities. Afterwards I got feedback and most of it was about the lack of examples and the flow, when
+to fill your data and how to get this back in the entity. However, often I notice that developers design forms
 based on their entities. This can lead to complex forms because you're confined to a strict set of properties.
 Developers often get struck with unmapped fields and form events to work their way around those limitations.
 
@@ -86,11 +86,13 @@ requirements rather than the setup of the database. All you need to do now is wi
 ```
 
 ## The Business Changed...
+You finished the User Story and you successfully deployed your code to production. However, the business changes over
+time and someone created a new User Story.
+
 _As a writer of blog posts, I want a checkbox on another page to confirm the post, so that users explicitly have to agree
 with our terms._
 
-You finished the User Story and you successfully deployed your code to production. However, the business changes over
-time and someone created a new User Story. A confirmation field still requires something to hold the data to say yes or
+A confirmation field still requires something to hold the data to say yes or
 no. Luckily you have seen how to not use entities but DTOs for your form, thus adding one should be a piece of cake!
 
 ## Adding a Confirm Checkbox
