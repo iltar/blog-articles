@@ -8,14 +8,15 @@ to fill your data and how to get this back in the entity. However, often I notic
 based on their entities. This can lead to complex forms because you're confined to a strict set of properties.
 Developers often get struck with unmapped fields and form events to work their way around those limitations.
 
-With Symfony Forms I highly encourage to follow the [composition over inheritance][composition over inheritance]
+With Symfony Forms I highly recommend to follow the [composition over inheritance][composition over inheritance]
 principle. Small form types are easier to re-use and make it less complex to build forms. Moreover, this allows small
 data objects to have specific goals with validation for their specific case, rather than complex validation groups.
 
 ## The User Story
-_As a writer of blog posts, I want people to post comments on my blog post to gather feedback and answer questions._
+Story: "_As a writer of blog posts, I want people to be able to post comments on my blog post so I can gather feedback
+and answer questions._"
 
-Does not sound to hard, right?
+Does not sound too hard, right?
 
 ## Starting From Scratch
 As a developer, you know what your form should do; you have data from a request and you want to create or update
@@ -90,8 +91,8 @@ requirements rather than the setup of the database. All you need to do now is wi
 You finished the User Story and you successfully deployed your code to production. However, the business changes over
 time and someone created a new User Story.
 
-_As a writer of blog posts, I want a checkbox on another page to confirm the post, so that users explicitly have to agree
-with our terms._
+Story: "_As a writer of blog posts, I want a checkbox on another page to confirm the post, so that users explicitly have
+to agree with our terms._"
 
 A confirmation field still requires something to hold the data to say yes or
 no. Luckily you have seen how to not use entities but DTOs for your form, thus adding one should be a piece of cake!
@@ -104,11 +105,7 @@ data object that wrap around the `CommentData` and `CommentType`.
     // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyFormType.php
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('confirm', ChoiceType::class, [
-            'expanded' => true,
-            'multiple' => true,
-        ]);
-
+        $builder->add('confirm', CheckboxType::class, ['required' => true]);
         $builder->add('comment', CommentFormType::class);
     }
 
