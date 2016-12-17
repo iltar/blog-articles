@@ -139,7 +139,8 @@ modifications but essentially works the same; it transfers data from the DTO int
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment = $data->getComment();
+            $commentData = $data->getComment();
+            $comment = new Comment($post, $commentData->getEmail(), $commentData->getComment());
 
             $this->entityManager->persist($comment);
             $this->entityManager->flush();
