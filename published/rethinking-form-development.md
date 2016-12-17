@@ -13,6 +13,7 @@ principle. Small form types are easier to re-use and make it less complex to bui
 data objects to have specific goals with validation for their specific case, rather than complex validation groups.
 
 [entities in forms]: /post/avoiding-entities-in-forms
+[composition over inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
 
 ## The User Story
 Story: _As a writer of blog posts, I want people to be able to post comments on my blog post so I can gather feedback
@@ -162,4 +163,3 @@ To sum this up:
 If you wish to view the full classes, you can check them out in my blog-articles repository, where the articles posted
 on this blog are stored: https://github.com/iltar/blog-articles/tree/master/src/RethinkingFormDevelopment
 
-[composition over inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
