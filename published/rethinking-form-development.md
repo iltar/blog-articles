@@ -154,7 +154,7 @@ modifications but essentially works the same; it transfers data from the DTO int
 To sum this up:
  - It's a good idea to follow [Composition over Inheritance][composition over inheritance] for forms.
  - It's actually quite easy to use Data Transfer Objects.
- - Decoupling your entity from forms is easier if you rethink from the ground up what your form should do and how to
+ - Decoupling your entity from forms is easier, if you rethink from the ground up what your form should do and how to
  model this.
  
 If you wish to view the full classes, you can check them out in my blog-articles repository, where the articles posted
