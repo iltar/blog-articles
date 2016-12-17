@@ -38,7 +38,7 @@ replies. Underneath that you can place a pair of input fields for the comment.
 Now you can actually put this into context, as you have the details of what you need.
 
 ```php
-    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/CommentFormType.php
+    // CommentFormType.php
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('email', EmailType::class);
@@ -51,7 +51,7 @@ Now you can actually put this into context, as you have the details of what you 
     }
 ```
 ```php
-    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/CommentData.php
+    // CommentData.php
     /** @Assert\Email() */
     private $email;
 
@@ -63,7 +63,7 @@ This form is not too complex and is relatively easy to handle. Moreover, it's no
 requirements rather than the setup of the database. All you need to do now is wire it to your controller.
 
 ```php
-    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/SimpleReplyController.php
+    // SimpleReplyController.php
     public function viewPostAction(Request $request, Post $post)
     {
         $data = new CommentData();
@@ -102,7 +102,7 @@ As mentioned before, I encourage composition over inheritance. To accomplish thi
 data object that wrap around the `CommentData` and `CommentType`.
 
 ```php
-    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyFormType.php
+    // ConfirmReplyFormType.php
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('confirm', CheckboxType::class, ['required' => true]);
@@ -115,7 +115,7 @@ data object that wrap around the `CommentData` and `CommentType`.
     }
 ```
 ```php
-    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyData.php 
+    // ConfirmReplyData.php
     /** @Assert\IsTrue() */
     private $confirm;
 
@@ -127,7 +127,7 @@ To keep both controllers functional, a new controller can be added. However, thi
 modifications but essentially works the same; it transfers data from the DTO into an Entity and flushes it.
 
 ```php
-    // https://github.com/iltar/blog-articles/blob/master/src/RethinkingFormDevelopment/ConfirmReplyController.php 
+    // ConfirmReplyController.php
     public function viewPostAction(Request $request, Post $post)
     {
         $data = new ConfirmReplyData();
