@@ -12,6 +12,8 @@ With Symfony Forms I highly recommend to follow the [composition over inheritanc
 principle. Small form types are easier to re-use and make it less complex to build forms. Moreover, this allows small
 data objects to have specific goals with validation for their specific case, rather than complex validation groups.
 
+[entities in forms]: /post/avoiding-entities-in-forms
+
 ## The User Story
 Story: _As a writer of blog posts, I want people to be able to post comments on my blog post so I can gather feedback
 and answer questions._
@@ -160,5 +162,4 @@ To sum this up:
 If you wish to view the full classes, you can check them out in my blog-articles repository, where the articles posted
 on this blog are stored: https://github.com/iltar/blog-articles/tree/master/src/RethinkingFormDevelopment
 
-[entities in forms]: /post/avoiding-entities-in-forms
 [composition over inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
