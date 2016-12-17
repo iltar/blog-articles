@@ -1,5 +1,5 @@
 [//]: # (TITLE: Rethinking Form Development)
-[//]: # (DATE: 2000-00-00T00:00:00+01:00)
+[//]: # (DATE: 2016-12-17T14:30:00+01:00)
 [//]: # (TAGS: Symfony, Forms, DTO, Data Transfer Object, Entity, User Story, Minimal Viable Product)
 
 In one of my previous blog posts, [Avoiding Entities in Forms][entities in forms], I've shown how to decouple your forms
