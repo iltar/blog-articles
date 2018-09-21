@@ -1,10 +1,6 @@
 author:
     name:  Iltar van der Berg
-    email: kjarli@gmail.com
-    urls:
-        github:   https://github.com/iltar/
-        facebook: https://www.facebook.com/iltar.van.der.berg
-        twitter:  https://twitter.com/kjarli
+    email: stovepipe.systems@delegate.email
 
 settings:
     introduction: author.md
